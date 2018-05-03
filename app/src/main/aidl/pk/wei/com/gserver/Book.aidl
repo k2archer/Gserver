@@ -3,5 +3,5 @@ package pk.wei.com.gserver;
 
 // Declare any non-default types here with import statements
 
-import pk.wei.com.library.Book;
+import pk.wei.com.gserver.Book;
 parcelable Book;
