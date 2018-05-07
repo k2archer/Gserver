@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pk.wei.com.gserver">
 
-    <!--<permission android:name= "pk.wei.com.library.access.BOOK_SERVICE" />-->
-
+    <!-- <permission android:name= "pk.wei.com.library.access.BOOK_SERVICE" /> -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="pk.wei.com.gserver.MainActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,10 +19,12 @@
         </activity>
 
         <service
-            android:name="pk.wei.com.gserver.BookService"
+            android:name=".BookService"
             android:enabled="true"
             android:exported="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
+
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
