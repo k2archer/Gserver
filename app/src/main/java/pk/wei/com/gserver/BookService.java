@@ -1,14 +1,15 @@
 package pk.wei.com.gserver;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.support.v7.app.NotificationCompat;
 
+import pk.wei.com.gserver.LibraryService.ManagerServiceImpl;
 import pk.wei.com.gserver.LibraryService.ReaderServiceImpl;
 
 public class BookService extends Service {
@@ -25,7 +26,7 @@ public class BookService extends Service {
                     binder = new ReaderServiceImpl();
                     break;
                 case MANAGER_SERVICE_BINDER_CODE:
-//                    binder = new ManagerServiceImpl();
+                    binder = new ManagerServiceImpl();
                     break;
             }
             return binder;
