@@ -44,7 +44,7 @@ public class ReaderServiceImpl extends IRemoteBookManager.Stub {
     }
 
     public int unSubscribeBook(String user, String book) throws RemoteException {
-        int check = mBookManager.unsubscribeBook(user, book);
+        int check = mBookManager.unSubscribeBook(user, book);
         notifyParticipate(book, NOTIFY_TYPE_UNORDERED);
         return check;
     }

@@ -19,6 +19,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         db.execSQL(TableConfig.createBookTable);
         db.execSQL(TableConfig.createUserInfoTable);
         db.execSQL(TableConfig.createOrderListTable);
+        db.execSQL(TableConfig.createMessagesTable);
     }
 
     public static DatabaseOpenHelper getInstance(Context context) {

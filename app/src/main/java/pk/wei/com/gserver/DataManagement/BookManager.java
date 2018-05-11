@@ -123,6 +123,7 @@ public class BookManager {
                             + ") VALUES (" + userId + ", " + bookId + ")";
                     db.execSQL(insert_sql);
 
+                    userMessage(userId, "你订阅了《" + book + "》。");
                     check = 1;
                 }
             }
@@ -131,7 +132,7 @@ public class BookManager {
         return check;
     }
 
-    public int unsubscribeBook(String user, String book) {
+    public int unSubscribeBook(String user, String book) {
         int userId = getUserId(user);
         if (userId != 0) {
             int bookId = getBookId(book);
@@ -148,11 +149,23 @@ public class BookManager {
                             + TableConfig.Order.TABLE_NAME
                             + " WHERE " + TableConfig.Order.BOOK_ID + " = " + bookId;
                     db.execSQL(delete_sql);
+
+                    userMessage(userId, "你退订了《" + book + "》。");
                 }
             }
         }
 
         return 0;
+    }
+
+    public void userMessage(int userId, String message) {
+        // 插入订阅记录
+        String insert_sql = "INSERT INTO "
+                + TableConfig.Messages.TABLE_NAME
+                + " (" + TableConfig.Messages.USER_ID
+                + ", " + TableConfig.Messages.MESSAGE
+                + ") VALUES (" + userId + ", " + "\"" + message + "\"" + ")";
+        db.execSQL(insert_sql);
     }
 
     public List<Book> getOrderedList(String user) {

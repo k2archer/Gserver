@@ -48,6 +48,22 @@ public class TableConfig {
                     + ")";
     public static final String deleteOrderListTable = "TRUNCATE " + Order.TABLE_NAME + ";";
 
+    public class Messages {
+        public static final String TABLE_NAME = "messages";
+        public static final String ID = "id";
+        public static final String USER_ID = "user_id";
+        public static final String MESSAGE = "message";
+    }
+
+    public static final String createMessagesTable =
+            "CREATE TABLE IF NOT EXISTS "
+                    + Messages.TABLE_NAME + "("
+                    + Messages.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + Messages.USER_ID + " INTEGER, "
+                    + Messages.MESSAGE + " TEXT"
+                    + ")";
+    public static final String deleteMessagesTable = "TRUNCATE " + Messages.TABLE_NAME + ";";
+
     public static String deleteTableSQL(String name) {
         return "TRUNCATE " + name + ";";
     }
