@@ -50,6 +50,11 @@ public class ManagerServiceImpl extends IRemoteBookManager.Stub {
     }
 
     @Override
+    public List<String> getMessagesList(String user) throws RemoteException {
+        return mBookManager.getMessagesList(user);
+    }
+
+    @Override
     public void registerNewBookPush(INewBookPushListener listener) throws RemoteException {
 
     }

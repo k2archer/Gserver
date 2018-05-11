@@ -123,7 +123,7 @@ public class BookManager {
                             + ") VALUES (" + userId + ", " + bookId + ")";
                     db.execSQL(insert_sql);
 
-                    userMessage(userId, "你订阅了《" + book + "》。");
+                    userMessage(userId, "你订阅了\n《" + book + "》。");
                     check = 1;
                 }
             }
@@ -150,7 +150,7 @@ public class BookManager {
                             + " WHERE " + TableConfig.Order.BOOK_ID + " = " + bookId;
                     db.execSQL(delete_sql);
 
-                    userMessage(userId, "你退订了《" + book + "》。");
+                    userMessage(userId, "你退订了\n《" + book + "》。");
                 }
             }
         }
@@ -166,6 +166,23 @@ public class BookManager {
                 + ", " + TableConfig.Messages.MESSAGE
                 + ") VALUES (" + userId + ", " + "\"" + message + "\"" + ")";
         db.execSQL(insert_sql);
+    }
+
+    public List<String> getMessagesList(String user) {
+        List<String> messageList = new ArrayList<>();
+        int userId = getUserId(user);
+        if (userId != 0) {
+            String message_list_sql = "SELECT "
+                    + TableConfig.Messages.MESSAGE
+                    + " FROM " + TableConfig.Messages.TABLE_NAME
+                    + " WHERE " + TableConfig.Messages.USER_ID + " = " + userId + " limit 10";
+            Cursor cursor = db.rawQuery(message_list_sql , null);
+            while (cursor.moveToNext()) {
+                String message = cursor.getString(0);
+                messageList.add(message);
+            }
+        }
+        return messageList;
     }
 
     public List<Book> getOrderedList(String user) {
