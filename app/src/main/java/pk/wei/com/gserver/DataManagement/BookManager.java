@@ -175,7 +175,8 @@ public class BookManager {
             String message_list_sql = "SELECT "
                     + TableConfig.Messages.MESSAGE
                     + " FROM " + TableConfig.Messages.TABLE_NAME
-                    + " WHERE " + TableConfig.Messages.USER_ID + " = " + userId + " limit 10";
+                    + " WHERE " + TableConfig.Messages.USER_ID + " = " + userId
+                    + " ORDER BY " +  TableConfig.Messages.ID + " DESC LIMIT 10";
             Cursor cursor = db.rawQuery(message_list_sql , null);
             while (cursor.moveToNext()) {
                 String message = cursor.getString(0);
