@@ -11,6 +11,7 @@ import android.support.v7.app.NotificationCompat;
 
 import pk.wei.com.gserver.LibraryService.ManagerServiceImpl;
 import pk.wei.com.gserver.LibraryService.ReaderServiceImpl;
+import pk.wei.com.gserver.LibraryService.WebAPIService;
 
 public class BookService extends Service {
 
@@ -33,10 +34,22 @@ public class BookService extends Service {
         }
     };
 
+    private WebAPIService mWebAPIService;
+
     @Override
     public void onCreate() {
         super.onCreate();
         createNotification();
+
+        mWebAPIService = new WebAPIService(getApplicationContext());
+        mWebAPIService.start();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        mWebAPIService.stopService();
     }
 
     public void createNotification() {
